@@ -1,5 +1,6 @@
-import { Map, Car, Leaf, Users, Zap, Cloud, Flame, Eye, EyeOff } from "lucide-react";
+import { Map as MapIcon, Car, Leaf, Users, Zap, Cloud, Flame, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { MapboxView } from "../components/ui/mapbox-view";
 
 export function LiveMapLayers() {
   const [layers, setLayers] = useState([
@@ -26,20 +27,8 @@ export function LiveMapLayers() {
   return (
     <div className="h-full flex">
       {/* Map Canvas */}
-      <div className="flex-1 relative" style={{ backgroundColor: 'var(--dt-bg-secondary)' }}>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-32 h-32 mx-auto mb-6 rounded-2xl flex items-center justify-center glow-cyan" style={{ backgroundColor: 'rgba(0, 240, 255, 0.1)' }}>
-              <Map className="w-16 h-16" style={{ color: 'var(--dt-cyan)' }} />
-            </div>
-            <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--dt-text-primary)' }}>
-              Live City Map
-            </h2>
-            <p style={{ color: 'var(--dt-text-secondary)' }}>
-              Interactive map with real-time data layers
-            </p>
-          </div>
-        </div>
+      <div className="flex-1 relative overflow-hidden">
+        <MapboxView viewMode="2d" />
 
         {/* Map Info Overlay */}
         <div className="absolute top-6 left-6 glass-panel rounded-xl p-4">
