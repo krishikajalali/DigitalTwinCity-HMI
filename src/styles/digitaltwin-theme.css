@@ -1,0 +1,304 @@
+/* DigitalTwin City Interface - Custom Theme */
+
+/* Light Mode (Default) */
+:root {
+  /* Primary Background Colors */
+  --dt-bg-primary: #f5f7fa;
+  --dt-bg-secondary: #ffffff;
+  --dt-bg-tertiary: #e8ecf4;
+
+  /* Border/Divider Colors */
+  --dt-border: rgba(0, 0, 0, 0.1);
+  --dt-divider: rgba(0, 0, 0, 0.08);
+
+  /* Accent Colors - Slightly muted for light mode */
+  --dt-cyan: #0088cc;
+  --dt-lime: #6bb82e;
+  --dt-amber: #f59e0b;
+  --dt-magenta: #d946ef;
+  --dt-purple: #8b5cf6;
+
+  /* Glassmorphism */
+  --dt-glass-bg: rgba(255, 255, 255, 0.9);
+  --dt-glass-border: rgba(0, 136, 204, 0.2);
+
+  /* Text Colors */
+  --dt-text-primary: #1f2937;
+  --dt-text-secondary: #4b5563;
+  --dt-text-muted: #9ca3af;
+
+  /* Status Colors */
+  --dt-status-success: #10b981;
+  --dt-status-warning: #f59e0b;
+  --dt-status-error: #ef4444;
+
+  /* Glow Effects */
+  --dt-glow-cyan: 0 0 15px rgba(0, 136, 204, 0.25);
+  --dt-glow-lime: 0 0 15px rgba(107, 184, 46, 0.25);
+  --dt-glow-amber: 0 0 15px rgba(245, 158, 11, 0.25);
+  --dt-glow-magenta: 0 0 15px rgba(217, 70, 239, 0.25);
+  --dt-glow-purple: 0 0 15px rgba(139, 92, 246, 0.25);
+}
+
+/* Dark Mode */
+.dark {
+  /* Primary Background Colors */
+  --dt-bg-primary: #0a0e27;
+  --dt-bg-secondary: #0f1629;
+  --dt-bg-tertiary: #151b2e;
+
+  /* Border/Divider Colors */
+  --dt-border: rgba(255, 255, 255, 0.1);
+  --dt-divider: rgba(255, 255, 255, 0.08);
+
+  /* Neon Accent Colors */
+  --dt-cyan: #00f0ff;
+  --dt-lime: #b4ff39;
+  --dt-amber: #ffb800;
+  --dt-magenta: #ff00e5;
+  --dt-purple: #b84eff;
+
+  /* Glassmorphism */
+  --dt-glass-bg: rgba(15, 22, 41, 0.7);
+  --dt-glass-border: rgba(0, 240, 255, 0.2);
+
+  /* Text Colors */
+  --dt-text-primary: #e8ecf4;
+  --dt-text-secondary: #9ca3bc;
+  --dt-text-muted: #5a6177;
+
+  /* Status Colors */
+  --dt-status-success: #00ff88;
+  --dt-status-warning: #ffb800;
+  --dt-status-error: #ff3366;
+
+  /* Glow Effects */
+  --dt-glow-cyan: 0 0 20px rgba(0, 240, 255, 0.4);
+  --dt-glow-lime: 0 0 20px rgba(180, 255, 57, 0.4);
+  --dt-glow-amber: 0 0 20px rgba(255, 184, 0, 0.4);
+  --dt-glow-magenta: 0 0 20px rgba(255, 0, 229, 0.4);
+  --dt-glow-purple: 0 0 20px rgba(184, 78, 255, 0.4);
+}
+
+/* Base Styles */
+body {
+  background: var(--dt-bg-primary);
+  color: var(--dt-text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Glassmorphism Utility Classes */
+.glass-panel {
+  background: var(--dt-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--dt-glass-border);
+}
+
+/* Light mode glass panel with subtle shadow */
+:root .glass-panel {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode glass panel keeps original styling */
+.dark .glass-panel {
+  box-shadow: none;
+}
+
+.glass-panel-solid {
+  background: var(--dt-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--dt-glass-border);
+}
+
+:root .glass-panel-solid {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-panel-solid {
+  background: rgba(15, 22, 41, 0.95);
+  box-shadow: none;
+}
+
+/* Neon Glow Effects */
+.glow-cyan {
+  box-shadow: var(--dt-glow-cyan);
+}
+
+.glow-lime {
+  box-shadow: var(--dt-glow-lime);
+}
+
+.glow-amber {
+  box-shadow: var(--dt-glow-amber);
+}
+
+.glow-magenta {
+  box-shadow: var(--dt-glow-magenta);
+}
+
+.glow-purple {
+  box-shadow: var(--dt-glow-purple);
+}
+
+/* Text Glow Effects */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(184, 78, 255, 0.6);
+}
+
+/* Active State Border */
+.active-border-cyan {
+  position: relative;
+}
+
+.active-border-cyan::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--dt-cyan), rgba(0, 240, 255, 0.2));
+  box-shadow: var(--dt-glow-cyan);
+}
+
+/* Smooth Transitions */
+.transition-smooth {
+  transition: all 120ms ease-out;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dt-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dt-glass-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dt-cyan);
+}
+
+/* Light mode scrollbar */
+:root ::-webkit-scrollbar-thumb {
+  background: rgba(0, 136, 204, 0.3);
+}
+
+:root ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 136, 204, 0.6);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--dt-cyan);
+}
+
+/* Range Input Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--dt-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  transition: all 120ms ease-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--dt-cyan);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  transition: all 120ms ease-out;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+}
+
+/* Select Element Styling */
+select option {
+  background: var(--dt-bg-secondary);
+  color: var(--dt-text-primary);
+}
+
+/* Input Styling */
+input::placeholder,
+textarea::placeholder {
+  color: var(--dt-text-muted);
+}
+
+/* Custom Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 300ms ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 200ms ease-out;
+}
