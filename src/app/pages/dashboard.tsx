@@ -1,4 +1,5 @@
 import { Activity, Users, AlertTriangle, TrendingUp, Car, Leaf, Zap, Droplets, MapPin, ArrowUp, ArrowDown } from "lucide-react";
+import { MapboxView } from "../components/ui/mapbox-view";
 
 export function Dashboard() {
   const metrics = [
@@ -172,19 +173,9 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Map Placeholder */}
-      <div className="glass-panel rounded-2xl p-6 h-96 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-24 h-24 mx-auto mb-4 rounded-2xl flex items-center justify-center glow-cyan" style={{ backgroundColor: 'rgba(0, 240, 255, 0.1)' }}>
-            <Activity className="w-12 h-12" style={{ color: 'var(--dt-cyan)' }} />
-          </div>
-          <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--dt-text-primary)' }}>
-            City Map View
-          </h3>
-          <p style={{ color: 'var(--dt-text-secondary)' }}>
-            Interactive 3D city visualization
-          </p>
-        </div>
+      {/* City Map View */}
+      <div className="glass-panel rounded-2xl p-6 h-96">
+        <MapboxView className="w-full h-full rounded-xl overflow-hidden" />
       </div>
     </div>
   );

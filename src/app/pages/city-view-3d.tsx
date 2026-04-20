@@ -1,5 +1,6 @@
 import { FloatingMapControls } from "../components/navigation/floating-map-controls";
 import { Box, Maximize2, Minimize2, RotateCw } from "lucide-react";
+import { MapboxView } from "../components/ui/mapbox-view";
 
 export function CityView3D() {
   return (
@@ -53,24 +54,8 @@ export function CityView3D() {
         </div>
       </div>
 
-      {/* 3D View Canvas */}
-      <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: 'var(--dt-bg-secondary)' }}>
-        <div className="text-center">
-          <div className="w-32 h-32 mx-auto mb-6 rounded-2xl flex items-center justify-center glow-cyan" style={{ backgroundColor: 'rgba(0, 240, 255, 0.1)' }}>
-            <Box className="w-16 h-16" style={{ color: 'var(--dt-cyan)' }} />
-          </div>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--dt-text-primary)' }}>
-            3D City View
-          </h2>
-          <p className="mb-6" style={{ color: 'var(--dt-text-secondary)' }}>
-            Interactive 3D visualization of the city digital twin
-          </p>
-          <div className="flex items-center gap-4 justify-center text-sm" style={{ color: 'var(--dt-text-muted)' }}>
-            <div>Use controls on the right to toggle layers</div>
-            <div>•</div>
-            <div>Click and drag to navigate</div>
-          </div>
-        </div>
+      <div className="absolute inset-0 z-0">
+        <MapboxView viewMode="3d" />
       </div>
     </div>
   );
