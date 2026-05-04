@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Users, Shield, UserPlus, Settings, Eye, Edit, Trash2, CheckCircle, XCircle, Lock } from "lucide-react";
+import { ConfirmModal } from "../components/ui/confirm-modal";
 
 export function UserRoles() {
   const roleStats = [
@@ -75,7 +77,7 @@ export function UserRoles() {
     },
   ];
 
-  const users = [
+  const [users, setUsers] = useState([
     {
       id: 1,
       name: 'Sarah Chen',
@@ -116,7 +118,29 @@ export function UserRoles() {
       status: 'inactive',
       lastActive: '2 days ago',
     },
-  ];
+  ]);
+
+  // Confirm modal state
+  const [confirmModal, setConfirmModal] = useState<{
+    open: boolean;
+    userId: number | null;
+    userName: string;
+  }>({ open: false, userId: null, userName: "" });
+
+  const openDeleteConfirm = (userId: number, userName: string) => {
+    setConfirmModal({ open: true, userId, userName });
+  };
+
+  const handleConfirmDelete = () => {
+    if (confirmModal.userId !== null) {
+      setUsers((prev) => prev.filter((u) => u.id !== confirmModal.userId));
+    }
+    setConfirmModal({ open: false, userId: null, userName: "" });
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmModal({ open: false, userId: null, userName: "" });
+  };
 
   return (
     <div className="h-full p-8 overflow-auto">
@@ -314,6 +338,7 @@ export function UserRoles() {
                       <Edit className="w-4 h-4" />
                     </button>
                     <button
+                      onClick={() => openDeleteConfirm(user.id, user.name)}
                       className="p-2 rounded-lg transition-smooth hover:scale-105"
                       style={{
                         backgroundColor: 'rgba(255, 51, 102, 0.1)',
@@ -329,6 +354,18 @@ export function UserRoles() {
           </div>
         </div>
       </div>
+
+      {/* Confirm Delete Modal */}
+      <ConfirmModal
+        isOpen={confirmModal.open}
+        variant="danger"
+        title="Delete User?"
+        message={`Are you sure you want to remove "${confirmModal.userName}" from the platform? This action cannot be undone.`}
+        confirmLabel="Yes, Delete"
+        cancelLabel="Cancel"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </div>
   );
 }

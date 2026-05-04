@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Database, Cloud, Activity, Zap, Wifi, RefreshCw, AlertTriangle, CheckCircle, Clock, Settings, Plus } from "lucide-react";
+import { ConfirmModal } from "../components/ui/confirm-modal";
 
 export function DataSources() {
   const sourceStats = [
@@ -98,6 +100,19 @@ export function DataSources() {
       color: 'var(--dt-cyan)',
     },
   ];
+
+  const [syncConfirm, setSyncConfirm] = useState<{
+    open: boolean;
+    sourceName: string;
+  }>({ open: false, sourceName: "" });
+
+  const openSyncConfirm = (sourceName: string) => {
+    setSyncConfirm({ open: true, sourceName });
+  };
+
+  const handleConfirmSync = () => {
+    setSyncConfirm({ open: false, sourceName: "" });
+  };
 
   const getStatusConfig = (status: string) => {
     const configs = {
@@ -249,6 +264,7 @@ export function DataSources() {
 
               <div className="flex items-center gap-2 pt-4 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
                 <button
+                  onClick={() => openSyncConfirm(source.name)}
                   className="flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-smooth hover:scale-105"
                   style={{
                     backgroundColor: 'rgba(0, 240, 255, 0.1)',
@@ -272,6 +288,18 @@ export function DataSources() {
           );
         })}
       </div>
+
+      {/* Sync Confirm Modal */}
+      <ConfirmModal
+        isOpen={syncConfirm.open}
+        variant="warning"
+        title="Force Sync?"
+        message={`Syncing "${syncConfirm.sourceName}" now will briefly pause its data stream and may cause a short gap in real-time readings. Continue?`}
+        confirmLabel="Yes, Sync Now"
+        cancelLabel="Cancel"
+        onConfirm={handleConfirmSync}
+        onCancel={() => setSyncConfirm({ open: false, sourceName: "" })}
+      />
     </div>
   );
 }
