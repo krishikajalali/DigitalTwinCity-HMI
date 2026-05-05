@@ -17,6 +17,7 @@ import { DataSources } from "./pages/data-sources";
 import { Reports } from "./pages/reports";
 import { UserRoles } from "./pages/user-roles";
 import { MenuLayouts } from "./pages/menu-layouts";
+import { SendAlerts } from "./pages/send-alerts";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
       { path: "reports", Component: Reports },
       { path: "user-roles", Component: UserRoles },
       { path: "menus", Component: MenuLayouts },
+      { path: "send-alerts", Component: SendAlerts },
     ],
   },
 ]);

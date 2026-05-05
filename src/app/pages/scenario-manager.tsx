@@ -1,7 +1,25 @@
+import { useState } from "react";
 import { FolderKanban, Play, Share2, Copy, Trash2, Calendar, User, MoreVertical } from "lucide-react";
+import { ConfirmModal } from "../components/ui/confirm-modal";
+
+type ConfirmState = {
+  open: boolean;
+  variant: "danger" | "warning";
+  title: string;
+  message: string;
+  onConfirm: () => void;
+};
+
+const EMPTY_CONFIRM: ConfirmState = {
+  open: false,
+  variant: "danger",
+  title: "",
+  message: "",
+  onConfirm: () => {},
+};
 
 export function ScenarioManager() {
-  const scenarios = [
+  const [scenarios, setScenarios] = useState([
     {
       id: 1,
       name: 'Traffic Reduction 2025',
@@ -42,7 +60,37 @@ export function ScenarioManager() {
       runs: 8,
       color: 'var(--dt-magenta)',
     },
-  ];
+  ]);
+
+  const [confirmState, setConfirmState] = useState<ConfirmState>(EMPTY_CONFIRM);
+
+  const closeConfirm = () => setConfirmState(EMPTY_CONFIRM);
+
+  const openDeleteConfirm = (id: number, name: string) => {
+    setConfirmState({
+      open: true,
+      variant: "danger",
+      title: "Delete Scenario?",
+      message: `"${name}" and all its simulation runs will be permanently deleted. This cannot be undone.`,
+      onConfirm: () => {
+        setScenarios((prev) => prev.filter((s) => s.id !== id));
+        closeConfirm();
+      },
+    });
+  };
+
+  const openRunConfirm = (name: string, runs: number) => {
+    setConfirmState({
+      open: true,
+      variant: "warning",
+      title: "Run Simulation?",
+      message: `Starting a new run for "${name}". This will be run #${runs + 1} and may take several minutes to complete.`,
+      onConfirm: () => {
+        // Mock: just close
+        closeConfirm();
+      },
+    });
+  };
 
   const statusColors = {
     active: 'var(--dt-cyan)',
@@ -168,7 +216,8 @@ export function ScenarioManager() {
 
             <div className="flex items-center gap-2 pt-4 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
               <button
-                className="flex-1 px-3 py-2 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-smooth"
+                onClick={() => openRunConfirm(scenario.name, scenario.runs)}
+                className="flex-1 px-3 py-2 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-smooth hover:scale-105"
                 style={{
                   backgroundColor: `${scenario.color}20`,
                   color: scenario.color,
@@ -192,6 +241,7 @@ export function ScenarioManager() {
                 <Share2 className="w-4 h-4" />
               </button>
               <button
+                onClick={() => openDeleteConfirm(scenario.id, scenario.name)}
                 className="p-2 rounded-lg transition-smooth hover:bg-white/5"
                 style={{ color: 'var(--dt-status-error)' }}
                 title="Delete"
@@ -202,6 +252,18 @@ export function ScenarioManager() {
           </div>
         ))}
       </div>
+
+      {/* Confirm Modal */}
+      <ConfirmModal
+        isOpen={confirmState.open}
+        variant={confirmState.variant}
+        title={confirmState.title}
+        message={confirmState.message}
+        confirmLabel={confirmState.variant === "danger" ? "Yes, Delete" : "Yes, Run"}
+        cancelLabel="Cancel"
+        onConfirm={confirmState.onConfirm}
+        onCancel={closeConfirm}
+      />
     </div>
   );
 }
