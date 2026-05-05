@@ -149,8 +149,8 @@ export function LoginPage() {
             </div>
             <div>
               <div
-                className="text-lg font-bold"
-                style={{ color: "var(--dt-text-primary)" }}
+                className="text-lg text-white font-bold"
+                // style={{ color: "var(--dt-text-primary)" }}
               >
                 DigitalTwin
               </div>
@@ -227,8 +227,8 @@ export function LoginPage() {
 
         {/* Bottom legal */}
         <div
-          className="relative z-10 text-xs"
-          style={{ color: "var(--dt-text-muted)" }}
+          className="relative z-10 text-white text-xs"
+          // style={{ color: "var(--dt-text-muted)" }}
         >
           © 2026 DigitalTwin City HMI — Prototype
         </div>
