@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Shield, Building2, ChevronRight, Eye, EyeOff, Zap, Users, MapPin, BarChart3, AlertCircle } from "lucide-react";
+import {
+  Shield,
+  Building2,
+  ChevronRight,
+  Eye,
+  EyeOff,
+  Zap,
+  Users,
+  MapPin,
+  BarChart3,
+  AlertCircle,
+} from "lucide-react";
 import { useAuth, UserRole } from "../../context/auth-context";
 
 const PRESETS = [
@@ -15,8 +26,14 @@ const PRESETS = [
     accentBorder: "rgba(184, 78, 255, 0.4)",
     badge: "AUTHORITY",
     badgeBg: "rgba(184, 78, 255, 0.2)",
-    description: "Full platform access — manage city operations, send alerts to citizens, and configure infrastructure.",
-    features: ["Send Alerts to Citizens", "User & Role Management", "Data Sources & Reports", "Predictive Analytics & Simulations"],
+    description:
+      "Full platform access — manage city operations, send alerts to citizens, and configure infrastructure.",
+    features: [
+      "Send Alerts to Citizens",
+      "User & Role Management",
+      "Data Sources & Reports",
+      "Predictive Analytics & Simulations",
+    ],
     avatar: "CA",
   },
   {
@@ -31,8 +48,14 @@ const PRESETS = [
     accentBorder: "rgba(0, 240, 255, 0.35)",
     badge: "CITIZEN",
     badgeBg: "rgba(0, 240, 255, 0.15)",
-    description: "Access public city dashboards — live maps, air quality, emergency alerts, and service requests.",
-    features: ["Live Map & 3D City View", "Emergency Alerts (read-only)", "Submit Feedback & Requests", "Public Sentiment Tracker"],
+    description:
+      "Access public city dashboards — live maps, air quality, emergency alerts, and service requests.",
+    features: [
+      "Live Map & 3D City View",
+      "Emergency Alerts (read-only)",
+      "Submit Feedback & Requests",
+      "Public Sentiment Tracker",
+    ],
     avatar: "RD",
   },
 ];
@@ -42,7 +65,9 @@ type AuthTab = "signin" | "signup";
 export function LoginPage() {
   const { login } = useAuth();
   const [tab, setTab] = useState<AuthTab>("signin");
-  const [selectedPreset, setSelectedPreset] = useState<(typeof PRESETS)[0] | null>(null);
+  const [selectedPreset, setSelectedPreset] = useState<
+    (typeof PRESETS)[0] | null
+  >(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -76,7 +101,8 @@ export function LoginPage() {
       <div
         className="hidden lg:flex flex-col justify-between w-[46%] p-12 relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #0a0e27 0%, #0f1629 40%, #1a0a2e 100%)",
+          background:
+            "linear-gradient(135deg, #0a0e27 0%, #0f1629 40%, #1a0a2e 100%)",
           borderRight: "1px solid rgba(184, 78, 255, 0.15)",
         }}
       >
@@ -95,14 +121,16 @@ export function LoginPage() {
         <div
           className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(184,78,255,0.2) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(184,78,255,0.2) 0%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
         <div
           className="absolute bottom-1/3 right-1/4 w-60 h-60 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(0,240,255,0.15) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(0,240,255,0.15) 0%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
@@ -112,15 +140,24 @@ export function LoginPage() {
           <div className="flex items-center gap-3 mb-2">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, var(--dt-cyan), var(--dt-purple))" }}
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--dt-cyan), var(--dt-purple))",
+              }}
             >
               <Zap className="w-5 h-5 text-white" />
             </div>
             <div>
-              <div className="text-lg font-bold" style={{ color: "var(--dt-text-primary)" }}>
+              <div
+                className="text-lg font-bold"
+                style={{ color: "var(--dt-text-primary)" }}
+              >
                 DigitalTwin
               </div>
-              <div className="text-xs uppercase tracking-widest" style={{ color: "var(--dt-cyan)" }}>
+              <div
+                className="text-xs uppercase tracking-widest"
+                style={{ color: "var(--dt-cyan)" }}
+              >
                 City HMI
               </div>
             </div>
@@ -130,13 +167,14 @@ export function LoginPage() {
         {/* Center copy */}
         <div className="relative z-10">
           <h1
-            className="text-5xl font-bold leading-tight mb-6"
-            style={{ color: "var(--dt-text-primary)" }}
+            className="text-5xl text-white font-bold leading-tight mb-6"
+            // style={{ color: "var(--dt-text-primary)" }}
           >
             The City's{" "}
             <span
               style={{
-                background: "linear-gradient(90deg, var(--dt-cyan), var(--dt-purple))",
+                background:
+                  "linear-gradient(90deg, var(--dt-cyan), var(--dt-purple))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -144,8 +182,12 @@ export function LoginPage() {
               Digital Brain
             </span>
           </h1>
-          <p className="text-lg leading-relaxed mb-10" style={{ color: "var(--dt-text-secondary)" }}>
-            Real-time intelligence for smarter urban management. Monitor, simulate, and respond — all from one command center.
+          <p
+            className="text-lg leading-relaxed mb-10"
+            style={{ color: "var(--dt-text-secondary)" }}
+          >
+            Real-time intelligence for smarter urban management. Monitor,
+            simulate, and respond — all from one command center.
           </p>
 
           {/* Stat pills */}
@@ -153,8 +195,16 @@ export function LoginPage() {
             {[
               { icon: MapPin, label: "12 City Zones", color: "var(--dt-cyan)" },
               { icon: Users, label: "248 Users", color: "var(--dt-purple)" },
-              { icon: BarChart3, label: "2.4M Data Points", color: "var(--dt-lime)" },
-              { icon: AlertCircle, label: "Live Alerts", color: "var(--dt-amber)" },
+              {
+                icon: BarChart3,
+                label: "2.4M Data Points",
+                color: "var(--dt-lime)",
+              },
+              {
+                icon: AlertCircle,
+                label: "Live Alerts",
+                color: "var(--dt-amber)",
+              },
             ].map((stat) => {
               const I = stat.icon;
               return (
@@ -176,7 +226,10 @@ export function LoginPage() {
         </div>
 
         {/* Bottom legal */}
-        <div className="relative z-10 text-xs" style={{ color: "var(--dt-text-muted)" }}>
+        <div
+          className="relative z-10 text-xs"
+          style={{ color: "var(--dt-text-muted)" }}
+        >
           © 2026 DigitalTwin City HMI — Prototype
         </div>
       </div>
@@ -184,16 +237,21 @@ export function LoginPage() {
       {/* Right Panel — Auth Form */}
       <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-auto">
         <div className="w-full max-w-md">
-
           {/* Mobile logo */}
           <div className="flex lg:hidden items-center gap-3 mb-8">
             <div
               className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, var(--dt-cyan), var(--dt-purple))" }}
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--dt-cyan), var(--dt-purple))",
+              }}
             >
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold" style={{ color: "var(--dt-text-primary)" }}>
+            <span
+              className="text-lg font-bold"
+              style={{ color: "var(--dt-text-primary)" }}
+            >
               DigitalTwin City HMI
             </span>
           </div>
@@ -201,7 +259,10 @@ export function LoginPage() {
           {/* Tab switcher */}
           <div
             className="flex rounded-xl p-1 mb-8"
-            style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
+            style={{
+              backgroundColor: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
           >
             {(["signin", "signup"] as AuthTab[]).map((t) => (
               <button
@@ -229,14 +290,20 @@ export function LoginPage() {
           >
             {tab === "signin" ? "Welcome back" : "Create account"}
           </h2>
-          <p className="text-sm mb-8" style={{ color: "var(--dt-text-secondary)" }}>
+          <p
+            className="text-sm mb-8"
+            style={{ color: "var(--dt-text-secondary)" }}
+          >
             {tab === "signin"
               ? "Select your role preset or enter credentials."
               : "Choose a role to get started with the platform."}
           </p>
 
           {/* Role Presets */}
-          <p className="text-xs uppercase tracking-widest mb-3 font-semibold" style={{ color: "var(--dt-text-muted)" }}>
+          <p
+            className="text-xs uppercase tracking-widest mb-3 font-semibold"
+            style={{ color: "var(--dt-text-muted)" }}
+          >
             Select Role Preset
           </p>
           <div className="grid grid-cols-2 gap-3 mb-6">
@@ -249,9 +316,13 @@ export function LoginPage() {
                   onClick={() => handlePresetSelect(preset)}
                   className="text-left p-4 rounded-xl transition-smooth hover:scale-[1.02] relative"
                   style={{
-                    backgroundColor: isSelected ? preset.accentBg : "rgba(255,255,255,0.04)",
+                    backgroundColor: isSelected
+                      ? preset.accentBg
+                      : "rgba(255,255,255,0.04)",
                     border: `1px solid ${isSelected ? preset.accentBorder : "rgba(255,255,255,0.08)"}`,
-                    boxShadow: isSelected ? `0 0 16px ${preset.accentBg}` : "none",
+                    boxShadow: isSelected
+                      ? `0 0 16px ${preset.accentBg}`
+                      : "none",
                   }}
                 >
                   {isSelected && (
@@ -264,12 +335,21 @@ export function LoginPage() {
                     className="w-9 h-9 rounded-xl flex items-center justify-center mb-3"
                     style={{ backgroundColor: preset.accentBg }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: preset.accentColor }} />
+                    <Icon
+                      className="w-5 h-5"
+                      style={{ color: preset.accentColor }}
+                    />
                   </div>
-                  <div className="font-semibold text-sm mb-0.5" style={{ color: "var(--dt-text-primary)" }}>
+                  <div
+                    className="font-semibold text-sm mb-0.5"
+                    style={{ color: "var(--dt-text-primary)" }}
+                  >
                     {preset.label}
                   </div>
-                  <div className="text-xs" style={{ color: "var(--dt-text-muted)" }}>
+                  <div
+                    className="text-xs"
+                    style={{ color: "var(--dt-text-muted)" }}
+                  >
                     {preset.sublabel}
                   </div>
                 </button>
@@ -289,21 +369,37 @@ export function LoginPage() {
               <div className="flex items-center gap-2 mb-2">
                 <span
                   className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
-                  style={{ backgroundColor: selectedPreset.badgeBg, color: selectedPreset.accentColor }}
+                  style={{
+                    backgroundColor: selectedPreset.badgeBg,
+                    color: selectedPreset.accentColor,
+                  }}
                 >
                   {selectedPreset.badge}
                 </span>
-                <span className="text-sm font-medium" style={{ color: "var(--dt-text-primary)" }}>
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: "var(--dt-text-primary)" }}
+                >
                   {selectedPreset.label}
                 </span>
               </div>
-              <p className="text-xs mb-3" style={{ color: "var(--dt-text-secondary)" }}>
+              <p
+                className="text-xs mb-3"
+                style={{ color: "var(--dt-text-secondary)" }}
+              >
                 {selectedPreset.description}
               </p>
               <div className="grid grid-cols-2 gap-1">
                 {selectedPreset.features.map((f) => (
-                  <div key={f} className="flex items-center gap-1.5 text-xs" style={{ color: "var(--dt-text-secondary)" }}>
-                    <div className="w-1 h-1 rounded-full" style={{ backgroundColor: selectedPreset.accentColor }} />
+                  <div
+                    key={f}
+                    className="flex items-center gap-1.5 text-xs"
+                    style={{ color: "var(--dt-text-secondary)" }}
+                  >
+                    <div
+                      className="w-1 h-1 rounded-full"
+                      style={{ backgroundColor: selectedPreset.accentColor }}
+                    />
                     {f}
                   </div>
                 ))}
@@ -315,7 +411,10 @@ export function LoginPage() {
           <div className="space-y-4 mb-6">
             {tab === "signup" && (
               <div>
-                <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--dt-text-secondary)" }}>
+                <label
+                  className="block text-xs font-medium mb-1.5"
+                  style={{ color: "var(--dt-text-secondary)" }}
+                >
                   Display Name
                 </label>
                 <input
@@ -328,13 +427,20 @@ export function LoginPage() {
                     border: "1px solid rgba(255,255,255,0.1)",
                     color: "var(--dt-text-primary)",
                   }}
-                  onFocus={(e) => { e.target.style.borderColor = "rgba(0,240,255,0.4)"; }}
-                  onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.1)"; }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "rgba(0,240,255,0.4)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "rgba(255,255,255,0.1)";
+                  }}
                 />
               </div>
             )}
             <div>
-              <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--dt-text-secondary)" }}>
+              <label
+                className="block text-xs font-medium mb-1.5"
+                style={{ color: "var(--dt-text-secondary)" }}
+              >
                 Email
               </label>
               <input
@@ -347,12 +453,19 @@ export function LoginPage() {
                   border: "1px solid rgba(255,255,255,0.1)",
                   color: "var(--dt-text-primary)",
                 }}
-                onFocus={(e) => { e.target.style.borderColor = "rgba(0,240,255,0.4)"; }}
-                onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.1)"; }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "rgba(0,240,255,0.4)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "rgba(255,255,255,0.1)";
+                }}
               />
             </div>
             <div>
-              <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--dt-text-secondary)" }}>
+              <label
+                className="block text-xs font-medium mb-1.5"
+                style={{ color: "var(--dt-text-secondary)" }}
+              >
                 Password
               </label>
               <div className="relative">
@@ -367,8 +480,12 @@ export function LoginPage() {
                     border: "1px solid rgba(255,255,255,0.1)",
                     color: "var(--dt-text-primary)",
                   }}
-                  onFocus={(e) => { e.target.style.borderColor = "rgba(0,240,255,0.4)"; }}
-                  onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.1)"; }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "rgba(0,240,255,0.4)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "rgba(255,255,255,0.1)";
+                  }}
                 />
                 <button
                   type="button"
@@ -376,7 +493,11 @@ export function LoginPage() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-1"
                   style={{ color: "var(--dt-text-muted)" }}
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -391,7 +512,10 @@ export function LoginPage() {
               selectedPreset && !entering
                 ? {
                     background: `linear-gradient(135deg, ${selectedPreset.accentColor}, ${selectedPreset.role === "authority" ? "var(--dt-cyan)" : "var(--dt-purple)"})`,
-                    color: selectedPreset.role === "authority" ? "white" : "var(--dt-bg-primary)",
+                    color:
+                      selectedPreset.role === "authority"
+                        ? "white"
+                        : "var(--dt-bg-primary)",
                     boxShadow: `0 4px 20px ${selectedPreset.accentBg}`,
                   }
                 : {
@@ -405,7 +529,10 @@ export function LoginPage() {
               <>
                 <div
                   className="w-4 h-4 rounded-full border-2 border-t-transparent animate-spin"
-                  style={{ borderColor: "currentColor", borderTopColor: "transparent" }}
+                  style={{
+                    borderColor: "currentColor",
+                    borderTopColor: "transparent",
+                  }}
                 />
                 Entering City Twin...
               </>
@@ -417,7 +544,10 @@ export function LoginPage() {
             )}
           </button>
 
-          <p className="text-center text-xs mt-4" style={{ color: "var(--dt-text-muted)" }}>
+          <p
+            className="text-center text-xs mt-4"
+            style={{ color: "var(--dt-text-muted)" }}
+          >
             This is a UI prototype — no real authentication
           </p>
         </div>
